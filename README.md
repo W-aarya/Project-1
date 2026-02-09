@@ -102,7 +102,7 @@ This project covers essential cybersecurity concepts:
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/secure-web-app.git
+git clone https://github.com/aaryawadekar06/Project-1.git
 cd secure-web-app
 
 # Create virtual environment
@@ -263,3 +263,4 @@ MIT License - See LICENSE file for details
 ---
 
 **Version**: 1.0.0 | **Status**: ✅ Production Ready | **Updated**: February 9, 2026
+
