@@ -2,24 +2,6 @@
 
 A comprehensive Flask-based web application demonstrating **secure authentication**, **threat hardening**, and **cybersecurity best practices**. This project showcases how to implement a real-world secure login/registration system with proper password policies, input validation, and session management.
 
-## 📋 Table of Contents
-
-- [Overview](#overview)
-- [Core Scope](#core-scope)
-- [Features](#features)
-- [Tech Stack](#tech-stack)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Project Structure](#project-structure)
-- [Security Features](#security-features)
-- [Demo Credentials](#demo-credentials)
-- [Security Best Practices](#security-best-practices)
-- [Future Enhancements](#future-enhancements)
-- [Contributing](#contributing)
-- [License](#license)
-
----
-
 ## 🎯 Overview
 
 Understanding cybersecurity is not just about finding vulnerabilities—it's about **securing real applications**. This project demonstrates how to build a production-ready web application with industry-standard security measures.
@@ -263,4 +245,5 @@ MIT License - See LICENSE file for details
 ---
 
 **Version**: 1.0.0 | **Status**: ✅ Production Ready | **Updated**: February 9, 2026
+
 
