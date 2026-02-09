@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="flash-messages">
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+
+    <div class="dashboard">
+        <div class="dashboard-header">
+            <h1>Security Dashboard 🛡️</h1>
+            <p>Threat Hardening & Secure Authentication Management</p>
+        </div>
+
+        <div class="dashboard-card">
+            <div class="security-badge">Authenticated & Verified</div>
+            <h2>Session Overview</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">👤</div>
+                    <div class="stat-value">{{ username }}</div>
+                    <div class="stat-label">Active User</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🔒</div>
+                    <div class="stat-value">Secure</div>
+                    <div class="stat-label">Session Status</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">✓</div>
+                    <div class="stat-value">Valid</div>
+                    <div class="stat-label">Auth Token</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="dashboard-card">
+            <h2>Security Configuration</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">🔐</div>
+                    <div class="stat-value">SHA-256</div>
+                    <div class="stat-label">Hash Algorithm</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">⚡</div>
+                    <div class="stat-value">8+ Chars</div>
+                    <div class="stat-label">Password Policy</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🛡️</div>
+                    <div class="stat-value">Active</div>
+                    <div class="stat-label">Input Validation</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="dashboard-card">
+            <h2>Recent Activity</h2>
+            <div class="activity-timeline">
+                <div class="activity-item">
+                    <div class="activity-icon">✓</div>
+                    <div class="activity-content">
+                        <div class="activity-title">Successfully Authenticated</div>
+                        <div class="activity-time">Just now</div>
+                        <span class="activity-status success">ALLOWED</span>
+                    </div>
+                </div>
+                <div class="activity-item">
+                    <div class="activity-icon">🔐</div>
+                    <div class="activity-content">
+                        <div class="activity-title">Password Validated</div>
+                        <div class="activity-time">Less than 1 minute ago</div>
+                        <span class="activity-status success">PASSED</span>
+                    </div>
+                </div>
+                <div class="activity-item">
+                    <div class="activity-icon">📋</div>
+                    <div class="activity-content">
+                        <div class="activity-title">Session Created</div>
+                        <div class="activity-time">Less than 1 minute ago</div>
+                        <span class="activity-status success">ACTIVE</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="dashboard-card">
+            <h2>Threat Hardening Features</h2>
+            <div style="display: grid; gap: 1rem; margin-top: 1.5rem;">
+                <div style="padding: 1rem; background: var(--light); border-radius: var(--radius-md); border-left: 4px solid var(--secondary-color);">
+                    <strong style="color: var(--dark);">✓ Input Sanitization</strong>
+                    <p style="color: var(--gray); font-size: 0.875rem; margin-top: 0.5rem;">All user inputs validated and sanitized</p>
+                </div>
+                <div style="padding: 1rem; background: var(--light); border-radius: var(--radius-md); border-left: 4px solid var(--primary-color);">
+                    <strong style="color: var(--dark);">✓ Session Management</strong>
+                    <p style="color: var(--gray); font-size: 0.875rem; margin-top: 0.5rem;">Secure session handling with encryption</p>
+                </div>
+                <div style="padding: 1rem; background: var(--light); border-radius: var(--radius-md); border-left: 4px solid var(--info-color);">
+                    <strong style="color: var(--dark);">✓ Access Control</strong>
+                    <p style="color: var(--gray); font-size: 0.875rem; margin-top: 0.5rem;">Role-based authentication & authorization</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="dashboard-card">
+            <h2>Actions</h2>
+            <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1.5rem;">
+                <a href="{{ url_for('logout') }}" class="btn btn-primary">Logout 🚪</a>
+                <button class="btn btn-secondary" disabled style="cursor: not-allowed;opacity: 0.6;">Settings ⚙️</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        setTimeout(() => {
+            document.querySelectorAll('.alert').forEach(a => a.remove());
+        }, 5000);
+    </script>
+</body>
+</html>

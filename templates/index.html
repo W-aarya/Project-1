@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome - Flask Auth</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="flash-messages">
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <div class="logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/>
+                    </svg>
+                </div>
+                <h1>Security Hub</h1>
+                <p>Secure authentication for threat hardening</p>
+            </div>
+
+            <div class="demo-credentials">
+                <h3>Demo Credentials</h3>
+                <div class="demo-item">
+                    <span class="demo-label">Username:</span>
+                    <span class="demo-value">demo</span>
+                </div>
+                <div class="demo-item">
+                    <span class="demo-label">Password:</span>
+                    <span class="demo-value">Demo@123</span>
+                </div>
+                <div class="demo-item" style="background: rgba(255, 255, 255, 0.1); margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px solid rgba(255, 255, 255, 0.2);">
+                    <span class="demo-label">Security:</span>
+                    <span class="demo-value">SHA-256 Hash</span>
+                </div>
+            </div>
+
+            <div id="loginForm">
+                <form action="{{ url_for('login') }}" method="POST" class="form">
+                    <div class="form-group">
+                        <label for="login-username">Username</label>
+                        <div class="input-wrapper">
+                            <span class="input-icon">👤</span>
+                            <input type="text" id="login-username" name="username" placeholder="Enter your username" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password">Password</label>
+                        <div class="input-wrapper">
+                            <span class="input-icon">🔒</span>Authenticate
+                            <input type="password" id="login-password" name="password" placeholder="Enter your password" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Sign In →</button>
+                </form>
+                <div class="toggle-form">
+                    <p>Don't have an account?</p>
+                    <button class="btn btn-secondary" onclick="toggleForms()">Create Account</button>
+                </div>
+            </div>
+
+            <div id="registerForm" style="display: none;">
+                <form action="{{ url_for('register') }}" method="POST" class="form">
+                    <div class="form-group">
+                        <label for="register-username">Username</label>
+                        <div class="input-wrapper">
+                            <span class="input-icon">👤</span>
+                            <input type="text" id="register-username" name="username" placeholder="Choose a username" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="register-password">Password</label>
+                        <div class="input-wrapper">
+                            <span class="input-icon">🔒</span>
+                            <input type="password" id="register-password" name="password" placeholder="Create a strong password" required>
+                        </div>
+                        <small style="color: #6b7280; font-size: 0.75rem; margin-top: 0.5rem; display: block;">Min 8 chars, 1 uppercase, 1 lowercase, 1 number</small>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Register Account ✓</button>
+                </form>
+                <div class="toggle-form">
+                    <p>Already have an account?</p>
+                    <button class="btn btn-secondary" onclick="toggleForms()">Sign In</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleForms() {
+            const login = document.getElementById('loginForm');
+            const register = document.getElementById('registerForm');
+            if (login.style.display === 'none') {
+                login.style.display = 'block';
+                register.style.display = 'none';
+            } else {
+                login.style.display = 'none';
+                register.style.display = 'block';
+            }
+        }
+        setTimeout(() => {
+            document.querySelectorAll('.alert').forEach(a => a.remove());
+        }, 5000);
+    </script>
+</body>
+</html>
